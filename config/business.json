@@ -1,0 +1,54 @@
+{
+  "_aciklama": "Bu dosyadaki tüm değerler ÖRNEKTİR. Kendi firmanızın adını, fiyatlarını, bölgelerini ve avantajlarını yazın. Asistan sadece buradaki bilgileri söyler, uydurmaz.",
+
+  "isletme": {
+    "ad": "Örnek Halı Yıkama",
+    "asistan_adi": "Elif",
+    "sehir": "İstanbul",
+    "telefon": "0212 000 00 00",
+    "calisma_saatleri": "Pazartesi-Cumartesi 09:00-19:00, Pazar kapalı",
+    "kayit_bildirimi": "Görüşmemiz hizmet kalitesi için kayıt altına alınabilir."
+  },
+
+  "hizmet_bolgeleri": ["Kadıköy", "Ataşehir", "Üsküdar", "Maltepe", "Ümraniye", "Kartal"],
+
+  "fiyatlar": [
+    { "kod": "makine", "ad": "Makine halısı", "birim": "m2", "fiyat": 60 },
+    { "kod": "shaggy", "ad": "Shaggy / uzun tüylü halı", "birim": "m2", "fiyat": 80 },
+    { "kod": "yun_el", "ad": "El dokuma / yün halı", "birim": "m2", "fiyat": 120 },
+    { "kod": "ipek", "ad": "İpek / bambu / viskon halı", "birim": "m2", "fiyat": 180 },
+    { "kod": "kilim", "ad": "Kilim", "birim": "m2", "fiyat": 70 },
+    { "kod": "yolluk", "ad": "Yolluk / paspas", "birim": "m2", "fiyat": 60 },
+    { "kod": "yorgan", "ad": "Yorgan", "birim": "adet", "fiyat": 350 },
+    { "kod": "battaniye", "ad": "Battaniye", "birim": "adet", "fiyat": 250 }
+  ],
+
+  "kurallar": {
+    "para_birimi": "TL",
+    "minimum_siparis_tutari": 500,
+    "ucretsiz_servis": true,
+    "teslim_suresi_gun": "3-4",
+    "odeme_secenekleri": "Teslimatta nakit veya kartla",
+    "olcum_notu": "Kesin fiyat, halılar atölyede makineyle ölçüldükten sonra belli olur; telefonda verilen tutar tahminidir."
+  },
+
+  "kampanyalar": [
+    "Üç ve üzeri halıda yüzde on indirim.",
+    "İlk siparişe özel koku giderici bakım ücretsiz."
+  ],
+
+  "pazarlama_noktalari": [
+    "Halılar tek tek, el ile ön işlemden geçirilir; leke ve koku için halının türüne özel şampuan kullanılır.",
+    "Yıkama sonrası kapalı kurutma odasında kurutulur; rutubet ve küf kokusu kalmaz.",
+    "Alerji ve akarlara karşı antibakteriyel durulama yapılır, bebekli ve evcil hayvanlı evler için güvenlidir.",
+    "Ücretsiz alım ve teslimat; şoförümüz randevu saatinden önce arayıp haber verir.",
+    "Halılar paketlenip etiketlenerek teslim edilir, karışma riski olmaz.",
+    "Memnun kalmazsanız ücretsiz tekrar yıkıyoruz."
+  ],
+
+  "sik_sorulanlar": [
+    { "soru": "Halılar kaç günde gelir?", "cevap": "Genellikle üç dört gün içinde, kuru ve paketli olarak teslim ediyoruz." },
+    { "soru": "Yerinde yıkama var mı?", "cevap": "Koltuk ve sabit halılar için yerinde yıkama ekibimiz var, fiyatı için ekibimiz sizi arar." },
+    { "soru": "Halıyı kendim getirebilir miyim?", "cevap": "Tabii, atölyemize getirebilirsiniz; ama alım ve teslimat zaten ücretsiz." }
+  ]
+}

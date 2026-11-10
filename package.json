@@ -1,0 +1,38 @@
+{
+  "name": "hali-call-center",
+  "version": "0.1.0",
+  "description": "Halı yıkama firması için yapay zekâ destekli telefon asistanı (Twilio ConversationRelay + Claude + Halıflex)",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "chat": "tsx src/cli.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecaliskaner/Hali_call_center.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ecaliskaner/Hali_call_center/issues"
+  },
+  "homepage": "https://github.com/ecaliskaner/Hali_call_center#readme",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.7.0",
+    "dotenv": "^18.0.10",
+    "ws": "^8.22.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/ws": "^8.18.2",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  }
+}
