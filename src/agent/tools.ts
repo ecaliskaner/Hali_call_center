@@ -2,14 +2,14 @@ import type Anthropic from "@anthropic-ai/sdk";
 import { z } from "zod";
 import type { Business } from "../config.js";
 import { quote } from "../pricing.js";
-import type { Customer, HaliflexClient } from "../haliflex/types.js";
+import type { Customer, HalipratikClient } from "../halipratik/types.js";
 
 /** Bir aramaya ait durum. Araçlar sadece arayan kişinin kendi kaydı üzerinde çalışır. */
 export interface CallState {
   callerPhone: string;
   customer: Customer | null;
   business: Business;
-  crm: HaliflexClient;
+  crm: HalipratikClient;
   timezone: string;
   now: () => Date;
   endRequested: boolean;
@@ -49,7 +49,7 @@ const TOOLS = [
   tool({
     name: "musteri_kaydet",
     description:
-      "Arayan müşteriyi Halıflex'e kaydeder ya da bilgilerini günceller (ad soyad, adres). Randevu oluşturmadan önce müşteri kaydı olmalı. Bilgileri müşteriye teyit ettirdikten sonra çağır.",
+      "Arayan müşteriyi Halıpratik'e kaydeder ya da bilgilerini günceller (ad soyad, adres). Randevu oluşturmadan önce müşteri kaydı olmalı. Bilgileri müşteriye teyit ettirdikten sonra çağır.",
     schema: z.object({
       ad_soyad: z.string(),
       adres: Adres.optional(),
@@ -86,7 +86,7 @@ const TOOLS = [
   tool({
     name: "musait_saatleri_getir",
     description:
-      "Müşterinin ilçesi için şoförlerin boş alım saatlerini Halıflex'ten getirir. Sonuçtaki slot_id değerini randevu_olustur'a ver; müşteriye slot_id söyleme.",
+      "Müşterinin ilçesi için şoförlerin boş alım saatlerini Halıpratik'ten getirir. Sonuçtaki slot_id değerini randevu_olustur'a ver; müşteriye slot_id söyleme.",
     schema: z.object({
       ilce: z.string(),
       baslangic_tarihi: z.string().optional().describe("YYYY-MM-DD. Boşsa bugünden başlar."),
@@ -121,7 +121,7 @@ const TOOLS = [
   tool({
     name: "randevu_olustur",
     description:
-      "Halı alım randevusunu Halıflex'e kaydeder ve şoföre atar. Önce musteri_kaydet ile adres kaydedilmiş ve müşteri özeti onaylamış olmalı.",
+      "Halı alım randevusunu Halıpratik'e kaydeder ve şoföre atar. Önce musteri_kaydet ile adres kaydedilmiş ve müşteri özeti onaylamış olmalı.",
     schema: z.object({
       slot_id: z.string(),
       kalemler: z.array(Kalem).min(1),

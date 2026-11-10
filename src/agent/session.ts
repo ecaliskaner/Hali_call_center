@@ -29,7 +29,7 @@ interface Turn {
 /**
  * Tek bir telefon görüşmesinin konuşma döngüsü.
  * Müşteri konuşmasını alır, Claude'a gönderir, cevabı parça parça sese aktarır,
- * araç çağrılarını (Halıflex, fiyat) çalıştırır. Müşteri sözünü keserse üretimi durdurur.
+ * araç çağrılarını (Halıpratik, fiyat) çalıştırır. Müşteri sözünü keserse üretimi durdurur.
  */
 export class CallSession {
   readonly messages: Msg[] = [];
@@ -45,7 +45,7 @@ export class CallSession {
     this.system = [{ type: "text", text: buildSystemPrompt(state.business), cache_control: { type: "ephemeral" } }];
   }
 
-  /** Arama başında: arayanı Halıflex'te bulur, karşılama metnini döndürür (hemen okunması için). */
+  /** Arama başında: arayanı Halıpratik'te bulur, karşılama metnini döndürür (hemen okunması için). */
   async start(): Promise<string> {
     if (this.state.callerPhone) {
       try {

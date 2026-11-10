@@ -8,7 +8,7 @@ Halı yıkama firmasının telefonuna bağlanan, doğal Türkçe sesle konuşan 
 - Firmanın farklarını ve kampanyalarını anlatarak **satış/pazarlama** yapar
 - Kayıtlı müşteriyi numarasından tanır, **sipariş durumunu** söyler, randevu iptal eder
 - Şikâyet, hasar veya "insanla görüşmek istiyorum" durumunda **çalışana aktarır**
-- Tüm müşteri/randevu bilgileri **Halıflex'e yazılır ve Halıflex'ten okunur**
+- Tüm müşteri/randevu bilgileri **Halıpratik'e yazılır ve Halıpratik'ten okunur**
 
 ## Nasıl çalışıyor
 
@@ -26,7 +26,7 @@ Twilio numarası ──POST /voice──► bu sunucu (TwiML döner)
 WebSocket /relay ◄──► CallSession (Claude)
                           │  araçlar:
                           ├─ musteri_kaydet ─────┐
-                          ├─ musait_saatleri_getir├──► Halıflex (API / panel)
+                          ├─ musait_saatleri_getir├──► Halıpratik (API / panel)
                           ├─ randevu_olustur ─────┤
                           ├─ siparisleri_getir ───┤
                           ├─ randevu_iptal ───────┘
@@ -41,7 +41,7 @@ WebSocket /relay ◄──► CallSession (Claude)
 | `src/agent/prompt.ts` | Asistanın kişiliği ve telefon konuşma kuralları |
 | `src/agent/tools.ts` | Asistanın kullanabildiği araçlar |
 | `src/agent/session.ts` | Görüşme döngüsü (Claude akışı, söz kesme, aktarma) |
-| `src/haliflex/` | Halıflex bağlantısı: `mock.ts` (deneme), `http.ts` (API şablonu) |
+| `src/halipratik/` | Halıpratik bağlantısı: `mock.ts` (deneme), `http.ts` (API şablonu) |
 | `src/server.ts` | Twilio webhook + WebSocket sunucusu |
 | `src/cli.ts` | Telefonsuz, yazışarak deneme |
 
@@ -59,7 +59,7 @@ cp .env.example .env   # ANTHROPIC_API_KEY'i doldurun
 npm run chat -- 05321234567
 ```
 
-Terminalde müşteri gibi yazın ("Merhaba, halı yıkatmak istiyorum, fiyat ne kadar?"). Randevular `data/haliflex-mock.json` dosyasına yazılır; aynı numarayla tekrar denerseniz asistan sizi tanır.
+Terminalde müşteri gibi yazın ("Merhaba, halı yıkatmak istiyorum, fiyat ne kadar?"). Randevular `data/halipratik-mock.json` dosyasına yazılır; aynı numarayla tekrar denerseniz asistan sizi tanır.
 
 ## Telefona bağlama
 
@@ -74,14 +74,14 @@ Terminalde müşteri gibi yazın ("Merhaba, halı yıkatmak istiyorum, fiyat ne 
 npm run build && npm start
 ```
 
-## Halıflex bağlantısı
+## Halıpratik bağlantısı
 
-Halıflex için herkese açık bir API dokümanı bulunmuyor. İki yol var:
+Halıpratik'in hazır bir API dokümanı yok. Halıpratik'ten neler istendiği [docs/halipratik-entegrasyon-ihtiyaclari.md](docs/halipratik-entegrasyon-ihtiyaclari.md) dosyasında; bu dosya doğrudan Halıpratik'e gönderilebilir. İki yol var:
 
-1. **API erişimi (önerilen):** Halıflex'ten API adresi, anahtar ve uç nokta dokümanı isteyin. Gelince sadece `src/haliflex/http.ts` içindeki yollar ve alan eşlemeleri düzenlenir, `HALIFLEX_MODE=http` yapılır. Asistanın geri kalanı değişmez.
-2. **Panel otomasyonu:** API yoksa aynı `HaliflexClient` arayüzü (`src/haliflex/types.ts`) Playwright ile yazılır: sunucu Halıflex paneline giriş yapıp formu doldurur ve şoför takvimini okur. Daha kırılgandır (panel değişirse bozulur) ama çalışır.
+1. **API erişimi (önerilen):** Halıpratik o listedeki uç noktaları açar. `src/halipratik/http.ts` zaten o listeye göre yazıldı; adlar farklı çıkarsa sadece bu dosyadaki yollar ve alan eşlemeleri düzenlenir, `HALIPRATIK_MODE=http` yapılır. Asistanın geri kalanı değişmez.
+2. **Panel otomasyonu:** API yoksa aynı `HalipratikClient` arayüzü (`src/halipratik/types.ts`) Playwright ile yazılır: sunucu Halıpratik paneline giriş yapıp formu doldurur ve şoför takvimini okur. Daha kırılgandır (panel değişirse bozulur) ama çalışır.
 
-O zamana kadar `HALIFLEX_MODE=mock` ile her şey yerel bir dosyada çalışır. Şoförler ve saat aralıkları `src/haliflex/mock.ts` içindeki `SEED`'de tanımlı.
+O zamana kadar `HALIPRATIK_MODE=mock` ile her şey yerel bir dosyada çalışır. Şoförler ve saat aralıkları `src/halipratik/mock.ts` içindeki `SEED`'de tanımlı.
 
 ## Firma bilgilerini düzenleme
 

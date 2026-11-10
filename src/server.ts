@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { WebSocketServer, type WebSocket } from "ws";
 import { config, loadBusiness } from "./config.js";
-import { createHaliflex, normalizePhone } from "./haliflex/index.js";
+import { createHalipratik, normalizePhone } from "./halipratik/index.js";
 import { CallSession } from "./agent/session.js";
 import type { CallState } from "./agent/tools.js";
 
@@ -12,13 +12,13 @@ import type { CallState } from "./agent/tools.js";
  * Telefon sunucusu.
  *
  *  Müşteri arar → Twilio numarası → POST /voice  (TwiML: ConversationRelay başlat)
- *  Twilio sesi yazıya çevirir → WebSocket /relay → CallSession (Claude + Halıflex)
+ *  Twilio sesi yazıya çevirir → WebSocket /relay → CallSession (Claude + Halıpratik)
  *  Cevap metni → WebSocket → Twilio ElevenLabs ile seslendirir
  *  Görüşme bitince → POST /call-ended  (gerekirse çalışana aktar: <Dial>)
  */
 
 const business = loadBusiness();
-const crm = createHaliflex();
+const crm = createHalipratik();
 
 const server = http.createServer(async (req, res) => {
   try {
@@ -226,5 +226,5 @@ function xml(s: string): string {
 if (config.relaySecret === "degistir-beni") console.warn("UYARI: RELAY_SECRET varsayılan değerde, değiştirin.");
 server.listen(config.port, () => {
   console.log(`Halı asistanı ${config.port} portunda. Twilio Voice webhook: ${config.publicUrl}/voice`);
-  console.log(`Halıflex modu: ${config.haliflex.mode}, model: ${config.claudeModel}`);
+  console.log(`Halıpratik modu: ${config.halipratik.mode}, model: ${config.claudeModel}`);
 });

@@ -1,5 +1,5 @@
 import type { Business } from "../config.js";
-import type { Customer } from "../haliflex/types.js";
+import type { Customer } from "../halipratik/types.js";
 
 /**
  * Sistem talimatı. Sabit tutulur (tarih, arayan bilgisi vb. içermez) ki

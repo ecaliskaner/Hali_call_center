@@ -37,11 +37,11 @@ export const config = {
     speechModel: env("STT_MODEL", "nova-3-general"),
   },
 
-  haliflex: {
-    mode: env("HALIFLEX_MODE", "mock") as "mock" | "http",
-    baseUrl: process.env.HALIFLEX_BASE_URL ?? "",
-    apiKey: process.env.HALIFLEX_API_KEY ?? "",
-    mockFile: env("HALIFLEX_MOCK_FILE", "data/haliflex-mock.json"),
+  halipratik: {
+    mode: env("HALIPRATIK_MODE", "mock") as "mock" | "http",
+    baseUrl: process.env.HALIPRATIK_BASE_URL ?? "",
+    apiKey: process.env.HALIPRATIK_API_KEY ?? "",
+    mockFile: env("HALIPRATIK_MOCK_FILE", "data/halipratik-mock.json"),
   },
 
   timezone: env("TZ_NAME", "Europe/Istanbul"),

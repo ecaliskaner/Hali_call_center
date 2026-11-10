@@ -4,7 +4,7 @@ import crypto from "node:crypto";
 import type {
   CreatePickupInput,
   Customer,
-  HaliflexClient,
+  HalipratikClient,
   Order,
   SaveCustomerInput,
   Slot,
@@ -12,7 +12,7 @@ import type {
 import { normalizePhone } from "./types.js";
 
 /**
- * Halıflex bağlantısı hazır olana kadar kullanılan yerel sahte veritabanı (JSON dosyası).
+ * Halıpratik bağlantısı hazır olana kadar kullanılan yerel sahte veritabanı (JSON dosyası).
  * Aynı arayüzü uyguladığı için asistanı uçtan uca test etmeye yarar.
  */
 
@@ -55,7 +55,7 @@ const SEED: MockDb = {
   siparisler: [],
 };
 
-export class MockHaliflex implements HaliflexClient {
+export class MockHalipratik implements HalipratikClient {
   private db: MockDb;
 
   constructor(private file: string, private now: () => Date = () => new Date()) {

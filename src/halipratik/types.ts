@@ -1,6 +1,6 @@
 /**
- * Halıflex ile konuşan katmanın ortak arayüzü.
- * Asistan sadece bu arayüzü bilir; arkada sahte (mock) veri mi, Halıflex API'si mi,
+ * Halıpratik ile konuşan katmanın ortak arayüzü.
+ * Asistan sadece bu arayüzü bilir; arkada sahte (mock) veri mi, Halıpratik API'si mi,
  * yoksa panel otomasyonu mu olduğu fark etmez.
  */
 
@@ -65,7 +65,7 @@ export interface CreatePickupInput {
   not?: string;
 }
 
-export interface HaliflexClient {
+export interface HalipratikClient {
   findCustomerByPhone(phone: string): Promise<Customer | null>;
   saveCustomer(input: SaveCustomerInput): Promise<Customer>;
   listAvailableSlots(q: { ilce: string; baslangic: string; gun_sayisi: number }): Promise<Slot[]>;

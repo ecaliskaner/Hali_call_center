@@ -1,7 +1,7 @@
 import readline from "node:readline/promises";
 import { stdin, stdout } from "node:process";
 import { config, loadBusiness } from "./config.js";
-import { createHaliflex, normalizePhone } from "./haliflex/index.js";
+import { createHalipratik, normalizePhone } from "./halipratik/index.js";
 import { CallSession } from "./agent/session.js";
 import type { CallState } from "./agent/tools.js";
 
@@ -15,7 +15,7 @@ const state: CallState = {
   callerPhone: normalizePhone(phoneArg),
   customer: null,
   business: loadBusiness(),
-  crm: createHaliflex(),
+  crm: createHalipratik(),
   timezone: config.timezone,
   now: () => new Date(),
   endRequested: false,

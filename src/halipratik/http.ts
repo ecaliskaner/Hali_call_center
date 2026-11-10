@@ -1,7 +1,7 @@
 import type {
   CreatePickupInput,
   Customer,
-  HaliflexClient,
+  HalipratikClient,
   Order,
   SaveCustomerInput,
   Slot,
@@ -9,18 +9,18 @@ import type {
 import { normalizePhone } from "./types.js";
 
 /**
- * Halıflex REST bağlantısı — ŞABLON.
+ * Halıpratik REST bağlantısı — ŞABLON.
  *
- * Halıflex'in herkese açık bir API dokümanı yok. Firmadan API erişimi (adres + anahtar)
+ * Halıpratik'in herkese açık bir API dokümanı yok. Firmadan API erişimi (adres + anahtar)
  * ve uç nokta listesi alındığında sadece bu dosyadaki yollar ve alan eşlemeleri
  * (`toCustomer`, `toSlot`, `toOrder`) güncellenecek; asistanın geri kalanı değişmez.
  *
- * Halıflex API vermezse alternatif: aynı `HaliflexClient` arayüzünü Playwright ile
+ * Halıpratik API vermezse alternatif: aynı `HalipratikClient` arayüzünü Playwright ile
  * panel otomasyonu (giriş yap → formu doldur) olarak yazmak. README'de anlatılıyor.
  */
-export class HttpHaliflex implements HaliflexClient {
+export class HttpHalipratik implements HalipratikClient {
   constructor(private baseUrl: string, private apiKey: string) {
-    if (!baseUrl) throw new Error("HALIFLEX_BASE_URL tanımlı değil.");
+    if (!baseUrl) throw new Error("HALIPRATIK_BASE_URL tanımlı değil.");
   }
 
   private async req<T>(method: string, p: string, body?: unknown): Promise<T> {
@@ -37,12 +37,12 @@ export class HttpHaliflex implements HaliflexClient {
     if (res.status === 404 && method === "GET") return null as T;
     if (!res.ok) {
       const text = await res.text().catch(() => "");
-      throw new Error(`Halıflex ${method} ${p} → ${res.status} ${text.slice(0, 200)}`);
+      throw new Error(`Halıpratik ${method} ${p} → ${res.status} ${text.slice(0, 200)}`);
     }
     return (await res.json()) as T;
   }
 
-  // ---- TODO: Aşağıdaki yolları Halıflex'in gerçek API'sine göre düzenleyin ----
+  // ---- TODO: Aşağıdaki yolları Halıpratik'in gerçek API'sine göre düzenleyin ----
 
   async findCustomerByPhone(phone: string): Promise<Customer | null> {
     const r = await this.req<any>("GET", `/customers?phone=${encodeURIComponent(normalizePhone(phone))}`);
@@ -100,7 +100,7 @@ export class HttpHaliflex implements HaliflexClient {
   }
 }
 
-// ---- Alan eşlemeleri (Halıflex alan adlarına göre güncellenecek) ----
+// ---- Alan eşlemeleri (Halıpratik alan adlarına göre güncellenecek) ----
 
 function toCustomer(x: any): Customer {
   return {

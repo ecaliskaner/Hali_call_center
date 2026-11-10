@@ -5,8 +5,8 @@ import os from "node:os";
 import path from "node:path";
 import { loadBusiness } from "../src/config.js";
 import { quote } from "../src/pricing.js";
-import { MockHaliflex } from "../src/haliflex/mock.js";
-import { normalizePhone } from "../src/haliflex/types.js";
+import { MockHalipratik } from "../src/halipratik/mock.js";
+import { normalizePhone } from "../src/halipratik/types.js";
 import { runTool, toolDefinitions, type CallState } from "../src/agent/tools.js";
 
 const business = loadBusiness("config/business.json");
@@ -37,7 +37,7 @@ function freshState(now = new Date("2026-11-10T07:00:00Z")): CallState {
     callerPhone: "+905321234567",
     customer: null,
     business,
-    crm: new MockHaliflex(file, () => now),
+    crm: new MockHalipratik(file, () => now),
     timezone: "Europe/Istanbul",
     now: () => now,
     endRequested: false,
